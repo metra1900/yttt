@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Multiplication Table Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Multiplication Table</h1>
+
+        <p>Enter a number to generate its multiplication table.</p>
+
+        <input
+            type="number"
+            id="number"
+            placeholder="Enter a number"
+            min="1"
+            max="100"
+        >
+
+        <button onclick="generateTable()">
+            Generate Table
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #142850, #27496d);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    width: 380px;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #142850;
+}
+
+p {
+    color: #555;
+}
+
+input {
+    width: 85%;
+    padding: 12px;
+    margin: 15px 0;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    font-size: 16px;
+}
+
+button {
+    background: #007bff;
+    color: white;
+
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+#result {
+    margin-top: 20px;
+    text-align: left;
+    color: #142850;
+    font-size: 17px;
+    line-height: 2;
+}
+
+.result-item {
+    background: #eaf2ff;
+    padding: 5px 12px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+</style>
+    <script>
+
+function generateTable() {
+
+    // Get the number entered by the user
+    let number = Number(
+        document.getElementById("number").value
+    );
+
+    // Get the result area
+    let result = document.getElementById("result");
+
+    // Clear previous results
+    result.innerHTML = "";
+
+    // Check if the number is valid
+    if (!Number.isInteger(number) || number < 1 || number > 100) {
+
+        result.innerHTML = "Please enter a whole number between 1 and 100.";
+
+        return;
+    }
+
+    // Create a counter
+    let count = 1;
+
+    // Start the do...while loop
+    do {
+
+        // Calculate multiplication
+        let answer = number * count;
+
+        // Display the result
+        result.innerHTML +=
+            `<div class="result-item">
+                ${number} × ${count} = ${answer}
+            </div>`;
+
+        // Increase the counter
+        count++;
+
+    } while (count <= 12);
+
+    // Display completion message
+    result.innerHTML += "<p> Table Completed!</p>";
+
+}
+
+</script>
+
+</body>
+</html>
